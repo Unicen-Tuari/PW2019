@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Carrito</title>
+    <link rel="stylesheet" href="css/carrito.css">
+</head>
+<body>
+    <label for="product">Producto:</label>
+    <input id="product" type="text">
+    <label for="price">Precio:</label>
+    <input type="number" name="price" id="price">
+    <button id="add">Agregar al Carrito</button>
+    <button id="discount">Generar Descuento</button>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Producto</th>
+                <th>Precio</th>
+            </tr>
+        </thead>
+        <tbody id="products">
+        </tbody>
+        <tfoot>
+            <tr>
+                <td>Total</td>
+                <td id="total"></td>
+            </tr>
+        </tfoot>
+    </table>
+    <script src="js/carrito.js"></script>
+</body>
+</html>
