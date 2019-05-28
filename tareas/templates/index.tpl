@@ -1,6 +1,6 @@
 {include file="header.tpl"}
 <h1>Lista de Tareas</h1>
-<form action="crearTarea.php" method="post">
+<form action="crear" method="post">
   <div class="form-group">
     <label for="tarea">Tarea</label>
     <input type="text" class="form-control"  name="tarea" id="tarea" placeholder="Inserte aqui su tarea">
@@ -23,11 +23,12 @@
           <strike>
           {/if}
             <h3>
-              <a href='verTarea.php?id={$tarea['id']}'>{$tarea['titulo']|upper|truncate:10}</a>
+              <a href='ver/{$tarea['id']}'>{$tarea['titulo']|upper|truncate:10}</a>
               <small class="text-muted">
                 {$tarea['descripcion']}
-                <a href='borrarTarea.php?id={$tarea['id']}'><i class="far fa-trash-alt"></i></a>
-                <a href='actualizarTarea.php?id={$tarea['id']}'><i class="fas fa-check-square"></i></a>
+                <a href='borrar/{$tarea['id']}'><i class="far fa-trash-alt"></i></a>
+                <a href='finalizar/{$tarea['id']}'><i class="fas fa-check-square"></i></a>
+                <a href='editar/{$tarea['id']}'><i class="far fa-edit"></i></a>
               </small>
             </h3>
           {if $tarea['finalizada'] == "1"}
