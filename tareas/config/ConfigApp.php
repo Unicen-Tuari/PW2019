@@ -12,9 +12,12 @@ class ConfigApp
       'finalizar' => 'TareasController#finalizar',
       'ver' => 'TareasController#ver',
       'editar' => 'TareasController#editar',
-      'actualizar' => 'TareasController#actualizar'
-
-
+      'actualizar' => 'TareasController#actualizar',
+      'login' => 'UsuariosController#login',
+      'registrarse' => 'UsuariosController#registrarse',
+      'registro' => 'UsuariosController#registro',
+      'ingresar' => 'UsuariosController#ingresar',
+      'logout' => 'UsuariosController#logout'
     ];
 
 }

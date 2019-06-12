@@ -1,5 +1,11 @@
 {include file="header.tpl"}
+<a href="logout">Logout</a>
 <h1>Lista de Tareas</h1>
+{if isset($error)}
+<div class="alert alert-danger" role="alert">
+  {$error}
+</div>
+{/if}
 <form action="crear" method="post">
   <div class="form-group">
     <label for="tarea">Tarea</label>

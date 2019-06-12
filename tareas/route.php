@@ -2,6 +2,7 @@
   include_once 'config/ConfigApp.php';
   include_once 'index.php';
   include_once 'TareasController.php';
+  include_once 'UsuariosController.php';
 
 function parseURL($url)
 {

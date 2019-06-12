@@ -12,11 +12,25 @@ class TareasController
   {
     $this->model = new TareasModel();
     $this->view = new TareasView();
+    session_start();
+    if (!isset($_SESSION['email'])){
+      header("Location: login");
+      die();
+    }
+    if ( isset($_SESSION['LAST_ACTIVITY']) && (time() - $_SESSION['LAST_ACTIVITY'] > 5)) {
+        header("Location: ../logout");
+        die();
+    }
+
+    $_SESSION['LAST_ACTIVITY'] = time();
+    echo $_SESSION['LAST_ACTIVITY'];
   }
 
-  function tareas(){
-    $tareas = $this->model->getTareas();
-    return $this->view->tareas($tareas);
+  function tareas($error=null){
+
+      $tareas = $this->model->getTareas();
+      return $this->view->tareas($tareas, $error);
+
   }
 
   function finalizar($params){
@@ -39,9 +53,19 @@ class TareasController
     if(isset($_POST["finalizada"])){
         $data_finalizada = 1;
     }
+    if($_POST["descripcion"]==""){
+      $this->tareas("La tarea debe tener descruipcion.");
+      return;
+    }
 
-    $this->model->crearTarea($_POST["tarea"],$_POST["descripcion"],$data_finalizada);
-    header("Location: ../tareas");
+    if(!$this->contienePalabraProhibida($_POST["tarea"])){
+      $this->model->crearTarea($_POST["tarea"],$_POST["descripcion"],$data_finalizada);
+      header("Location: ../tareas");
+    }
+    else {
+      $this->tareas("Tarea no creada, contenia palabras prohibidas.");
+    }
+
   }
 
   function editar($params){
@@ -53,6 +77,12 @@ class TareasController
       $this->model->actualizarTarea($_POST["idTarea"],$_POST["tarea"],$_POST["descripcion"]);
       header("Location: ../tareas");
     }
+
+  function contienePalabraProhibida($texto){
+    $prohibida="gustaria";
+    $pos=strpos($texto, $prohibida);
+    return $pos !== false;
+  }
 }
 
  ?>
